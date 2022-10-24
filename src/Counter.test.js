@@ -39,4 +39,14 @@ describe("Counter", () => {
         expect(countValue1).toEqual(0);
     })
 
+    it("count sing should reverse when the switch signs button is clicked", () => {
+        const { getByTestId, getByRole } = render(<Counter initialCount={3}/>);
+        const switchButton = screen.getByRole("button", {name: "Switch Signs"});
+        const countValue = Number(screen.getByTestId("count").textContent);
+        expect(countValue).toEqual(3);
+        fireEvent.click(switchButton);
+        const countValue1 = Number(screen.getByTestId("count").textContent);
+        expect(countValue1).toEqual(-3); 
+    })
+
 })
