@@ -17,7 +17,16 @@ describe("Counter", () => {
         fireEvent.click(incrementBttn);
         const countValue1 = Number(screen.getByTestId("count").textContent);
         expect(countValue1).toEqual(1);
+    })
 
+    it("count should decrement by 1 if the decrement button is clicked", () => {
+        const { getByTestId, getByRole } = render(<Counter initialCount={0} />);
+        const decrementBttn = screen.getByRole("button", {name: "Decrement"});
+        const countValue = Number(screen.getByTestId("count").textContent);
+        expect(countValue).toEqual(0);
+        fireEvent.click(decrementBttn);
+        const countValue1 = Number(screen.getByTestId("count").textContent);
+        expect(countValue1).toEqual(-1);
     })
 
 })
