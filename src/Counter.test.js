@@ -29,4 +29,14 @@ describe("Counter", () => {
         expect(countValue1).toEqual(-1);
     })
 
+    it("count should go back to 0 if the restart button gets pressed", () => {
+        const { getByTestId, getByRole } = render(<Counter initialCount={50}/>);
+        const restartButton = screen.getByRole("button", {name: "Restart"});
+        const countValue = Number(screen.getByTestId("count").textContent);
+        expect(countValue).toEqual(50);
+        fireEvent.click(restartButton);
+        const countValue1 = Number(screen.getByTestId("count").textContent);
+        expect(countValue1).toEqual(0);
+    })
+
 })
