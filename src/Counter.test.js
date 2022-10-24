@@ -12,9 +12,11 @@ describe("Counter", () => {
     it("count should increment by 1 if the increment button is clicked", () => {
         const { getByTestId, getByRole } = render(<Counter initialCount={0}/>);
         const incrementBttn = screen.getByRole("button", {name: "Increment"});
-        fireEvent.click(incrementBttn);
         const countValue = Number(screen.getByTestId("count").textContent);
-        expect(countValue).toEqual(1);
+        expect(countValue).toEqual(0);
+        fireEvent.click(incrementBttn);
+        const countValue1 = Number(screen.getByTestId("count").textContent);
+        expect(countValue1).toEqual(1);
 
     })
 
